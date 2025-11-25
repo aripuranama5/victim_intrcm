@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intercom Widget Testing - Bug Hunting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Intercom Widget (Victim)</h1>
+        <p>Test various Intercom configurations for security research (Victim)</p>
+        
+        <div class="test-section">
+            <h2>Intercom Configuration (Victim)</h2>
+            
+            <div class="form-group">
+                <label for="appId">App ID:</label>
+                <input type="text" id="appId" value="a0khlrnl" placeholder="Your Intercom App ID">
+            </div>
+            
+            <div class="form-group">
+                <label for="userId">User ID:</label>
+                <input type="text" id="userId" value="test_user_123" placeholder="User ID for testing">
+            </div>
+            
+            <div class="form-group">
+                <label for="userEmail">User Email:</label>
+                <input type="text" id="userEmail" value="test@example.com" placeholder="User email">
+            </div>
+            
+            <div class="form-group">
+                <label for="userName">User Name:</label>
+                <input type="text" id="userName" value="Test User" placeholder="User name">
+            </div>
+            
+            <div class="form-group">
+                <label for="customData">Custom Data (JSON):</label>
+                <textarea id="customData" placeholder='{"company": "Test Corp", "plan": "premium"}'>{"company": "Test Corp", "plan": "premium"}</textarea>
+            </div>
+            
+            <button onclick="initializeIntercom()">Initialize Intercom</button>
+            <button onclick="updateIntercom()" class="secondary">Update Intercom</button>
+            <button onclick="shutdownIntercom()" class="danger">Shutdown Intercom</button>
+        </div>
+
+        <div class="test-section">
+            <h2>XSS Payload Testing</h2>
+            <div class="payload-buttons">
+                <button onclick="testXSS('basic')">Basic XSS</button>
+                <button onclick="testXSS('img')">IMG XSS</button>
+                <button onclick="testXSS('svg')">SVG XSS</button>
+                <button onclick="testXSS('script')">Script Tag</button>
+                <button onclick="testXSS('json')">JSON Break</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="customPayload">Custom Payload:</label>
+                <textarea id="customPayload" placeholder="Enter your custom payload here"></textarea>
+            </div>
+            
+            <button onclick="testCustomPayload()">Test Custom Payload</button>
+        </div>
+
+        <div class="test-section">
+            <h2>API Testing</h2>
+            <button onclick="testEndpoints()">Test Intercom Endpoints</button>
+            <div id="apiResults"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>Logs & Results</h2>
+            <div id="logs" class="logs"></div>
+        </div>
+    </div>
+
+    <!-- Intercom Widget Script (will be injected dynamically) -->
+    <div id="intercomScriptContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
